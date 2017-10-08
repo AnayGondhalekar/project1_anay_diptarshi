@@ -33,8 +33,9 @@ LIB_OBJS= $(LIB_SRCS:.c=o)
 endif
 
 ifeq ($(PLATFORM),KL25Z)
-CFLAGS=-Wall -g -O0 -std=c99 -Werror $(INCLUDES_KL25Z) -mcpu=$(CPU) --specs=$(SPECS) 
-      -mfpu=$(FPU) -mthumb -march=$(ARCHITECTURE) -mfloat-abi=soft 
+CFLAGS=-Wall -g -O0 -std=c99 -Werror $(INCLUDES_KL25Z) \
+	-mthumb -mfpu=$(FPU) --specs=$(SPECS) -mcpu=$(CPU) \
+	-march=$(ARCHITECTURE) -mfloat-abi=soft 
 CC=arm-none-eabi-gcc
 CPPFLAGS= -DKL25Z -DPROJECT1 -DKL25Z
 LDFLAGS= -Wl,-Map=project1.map -T $(LINKER_FILE)
