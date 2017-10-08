@@ -14,19 +14,19 @@ CC=gcc
 CPPFLAGS= -DHOST -DPROJECT1 -DVERBOSE
 LDFLAGS= -Wl,-Map=project1.map 
 SOURCE= $(SOURCES:.c = .o)
-SIZE= arm-linux-gnueabi-size -Bd
+SIZE= size -Bd
 DEPS= $(SOURCES:.c=.d)
 LIB_OBJS= $(LIB_SRCS:.c=o)
 
 endif
 
 ifeq ($(PLATFORM),BBB)
-CC=arm-linux-gnueabi-gcc
+CC=arm-linux-gnueabihf-gcc
 CFLAGS=-Wall -g -O0 -std=c99 -Werror $(INCLUDES)
 CPPFLAGS= -DBBB -DPROJECT1 -DVERBOSE
 LDFLAGS= -Wl,-Map=project1.map 
 SOURCE= $(SOURCES:.c =.o)
-SIZE=  arm-linux-gnueabi-size -Bd
+SIZE=  arm-linux-gnueabihf-size -Bd
 DEPS= $(SOURCES:.c=.d)
 LIB_OBJS= $(LIB_SRCS:.c=o)
 
