@@ -1,0 +1,74 @@
+#These are all the for the host platform
+
+ifeq ($(PLATFORM),HOST)
+flags=-Wall	 -g -O0 -std=c99  
+CC=gcc
+endif
+
+
+#the recipies for the object files
+ 
+debug.o:debug.c
+	${CC} -c debug.c -I. ${flags}
+	${CC} -c conversion.c -I. ${flags}
+
+memory.o:memory.c
+	${CC} -c memory.c -I. ${flags}
+
+conversion.o:conversion.c
+	${CC} -c conversion.c -I. ${flags}
+
+ 
+project1.o:project1.c
+	${CC} -c project1.c -I. ${flags}
+main.o:main.c
+	${CC} -c main.c -I.  ${flags}
+
+#the recipies for the .asm  files
+
+
+memory.asm:memory.c
+	${CC} -S memory.c ${flags}
+conversion.asm:conversion.c
+	${CC} -S conversion.c ${flag}
+debug.asm:debug.c
+	${CC} -S debug.c ${flags}
+project1.asm:project1.c
+	${CC} -S project1.c ${flags}
+main.asm:main.c
+	${CC} -S main.c ${flags}
+#the  recipies for  implementation files 
+
+memory.i:memory.c
+	${CC} -E memory.c ${flags}
+conversion.i:conversion.c
+	${CC} -E conversion.c ${flag}
+debug.i:debug.c 
+	${CC} -E debug.c ${flags}
+
+project1.elf: debug.o memory.o conversion.o project1.o  main.o
+	${CC} debug.o memory.o conversion.o project1.o main.o -o project1.elf ${flags} -I ./
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+clean:
+	rm -rf *.o *.elf
